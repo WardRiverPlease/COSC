@@ -10,6 +10,7 @@ using namespace std;
 GameBoard::GameBoard(int w, int h) : width(w), height(h), snake(w, h){
     board.resize(height, vector<char>(width, ' '));
     initializeBoundaries();
+    srand(time(NULL));
     placeBonus();
     placeFood();
 
@@ -40,14 +41,15 @@ void GameBoard::initializeBoundaries() {
     // Fill the playable area with 'x'
     for (int i = 1; i < height - 1; ++i) {
         for (int j = 1; j < width - 1; ++j) {
-          //  board[i][j] = 'x';
+         //   board[i][j] = '_';
         }
     }
 }
 
 void GameBoard::draw_board() {
+    system("cls");
     // Print the top boundary
-    for(int i = 0; i < (width - 7); i++){
+    for(int i = 0; i < (width - 6); i++){
         cout << "-";
     }
     for (int i = 0; i < width; ++i) {
@@ -94,6 +96,10 @@ void GameBoard::draw_board() {
 }
 
 void GameBoard::placeFood() {
+    //srand(time(NULL));
+    int old_x = food_position.second;
+    int old_y = food_position.first;
+    board[old_y][old_x] = ' ';
     int x, y;
    
     x = 1 + rand() % (width - 2);  // Random x coordinate between 1 and width-2
@@ -115,4 +121,17 @@ void GameBoard::placeBonus() {
 
 Snake& GameBoard::getSnake(){
     return snake;
+}
+
+bool GameBoard::checkCollisionWithFood(){
+    pair<int, int> head = snake.getHead();
+    if(head == food_position){
+       // srand(time(NULL));
+        placeFood();
+
+        snake.grow();
+        return true;
+    }
+    return false;
+
 }
