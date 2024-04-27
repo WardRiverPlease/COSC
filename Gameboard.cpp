@@ -113,3 +113,6 @@ void GameBoard::placeBonus() {
     board[y][x] = 'B';
 }
 
+Snake& GameBoard::getSnake(){
+    return snake;
+}
