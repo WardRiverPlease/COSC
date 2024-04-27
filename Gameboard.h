@@ -18,6 +18,7 @@ private:
     Snake snake;
     
 public:
+    bool checkCollisionWithFood();
     int getWidth() const;
     int getHeight() const ;
     GameBoard(int w, int h);
