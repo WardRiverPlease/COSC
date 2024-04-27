@@ -32,13 +32,14 @@ void Snake::move(char direction) {
             dx = 1;
             break;
     }
+    pair<int, int> new_head = { body[0].first + dx, body[0].second + dy };
+
     
     // Move the snake
     for (int i = body.size() - 1; i > 0; --i) {
         body[i] = body[i - 1];
     }
-    body[0].first += dx;
-    body[0].second += dy;
+    body[0] = new_head;
 }
 
 vector<pair<int, int>> Snake::getBody() {
