@@ -27,6 +27,8 @@ public:
     void draw_board();
     // Additional methods to update snake position, food position, etc.
     //Snake Classes
+    Snake& getSnake();
+
 
  
 };
