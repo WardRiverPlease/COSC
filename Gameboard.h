@@ -15,9 +15,11 @@ private:
     pair<int, int> bonus_position;
     vector<vector<char>> board;
     
-  //  Snake snake;
+    Snake snake;
     
 public:
+    int getWidth() const;
+    int getHeight() const ;
     GameBoard(int w, int h);
     void placeFood();
     void placeBonus();
@@ -25,8 +27,8 @@ public:
     void draw_board();
     // Additional methods to update snake position, food position, etc.
     //Snake Classes
- //   void moveSnake(char direction);
- //   void updateGame();
+
+ 
 };
 
 #endif // GAMEBOARD_H
