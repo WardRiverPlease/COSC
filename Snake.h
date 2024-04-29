@@ -14,8 +14,10 @@ public:
     void move(char direction); // move the snake in a direction (U, D, L, R)
     vector<pair<int, int>> getBody(); // get the current body positions
     pair<int, int> getHead(); // get the position of the snake's head
-    bool checkCollision(pair<int, int> newPosition, int width, int height); // Add width and height parameters
+    bool checkCollisionWithItself();
+    bool checkCollisionWithBoundaries(int width, int height);
     void grow(); // grow the snake by adding a body segment
+    
 
 };
 
