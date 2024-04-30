@@ -22,7 +22,6 @@ void GameManager::startGame()
     {
         direction = _getch();
         handleInput(direction);
-        //  gameBoard.checkCollisionWithFood();
         if (turnsLeft == 0)
         {
             updateGame();
@@ -50,15 +49,17 @@ void GameManager::handleInput(char direction)
             game_over = true;
         }
         //check collision with food
-        if (gameBoard.checkCollisionWithFood())
+           if (gameBoard.checkCollisionWithFood())
+    {
+        int score = 100;
+        
+        if (activePowerUp != nullptr && activePowerUp->isActive())
         {
-            if(activePowerUp != nullptr && activePowerUp->isActive()){
-                activePowerUp->applyPower(LevelManager.getScore());
-            }else{
-                LevelManager.increaseScore(100);
-            }
-            
+           activePowerUp->applyPower(score);
         }
+
+        LevelManager.increaseScore(score);
+    }
         //check collision with bonus
         if (gameBoard.checkCollisionWithBonus())
         {
@@ -69,10 +70,10 @@ void GameManager::handleInput(char direction)
             }
             activePowerUp = new DoubleScore(); // Allocate memory for DoubleScore
         }
-        if (activePowerUp != nullptr && activePowerUp->isActive())
-        {
-            LevelManager.increaseScore(100);
-        }
+    //    if (activePowerUp != nullptr && activePowerUp->isActive())
+    //    {
+    //        LevelManager.increaseScore(100);
+    //    }
         if (LevelManager.getScore() >= 1000)
         {
             LevelManager.increaseLevel();
@@ -98,9 +99,16 @@ void GameManager::updateGame()
     {
         game_over = true;
     }
-    if (gameBoard.checkCollisionWithFood())
+     if (gameBoard.checkCollisionWithFood())
     {
-        LevelManager.increaseScore(100);
+        int score = 100;
+        
+        if (activePowerUp != nullptr && activePowerUp->isActive())
+        {
+           activePowerUp->applyPower(score);
+        }
+
+        LevelManager.increaseScore(score);
     }
     if (gameBoard.checkCollisionWithBonus())
     {
