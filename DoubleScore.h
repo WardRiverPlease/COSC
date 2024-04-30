@@ -9,7 +9,7 @@ private:
 
 public:
     DoubleScore();
-    virtual void applyPower(int score) override;
+    virtual void applyPower(int& score) override;
     virtual bool isActive() const override;
     virtual void reset() override;
 };
